@@ -1,7 +1,9 @@
 /**
  * Heap.js
  *
- * 
+ *
+ *
+ * TODO: Tests
  */
 
 class Heap extends Array {
@@ -11,9 +13,8 @@ class Heap extends Array {
     //Maintaining a set of the values allows constant-time lookup
     Object.defineProperty(this, '_itemSet', {
       value: {},
-      writable: true,
     });
-    
+
     values.forEach(val => this.insert(val));
   }
 
@@ -99,10 +100,3 @@ class Heap extends Array {
     }
   }
 }
-
-// const heap = new Heap(2, 3, 1, 10, 13, 2, 6, 24, 2);
-// console.log(heap);
-
-// heap.removeMax();
-// console.log(heap);
-// console.log(heap.contains(24));
