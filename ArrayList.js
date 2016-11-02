@@ -31,10 +31,24 @@ class ArrayList extends Array {
       this.length /= 2;
     }
     
-    const lastIndex = this.count - 1;
-    const value = this[lastIndex];
-    delete this[lastIndex];
-    this.count--;
+    const value = this[--this.count];
+    delete this[this.count];
     return value;
   }
 }
+
+// const c = console;
+// const al = new ArrayList();
+
+// for(let i = 0; i < 10; i++) {
+//   al.push('a', 'b', 'c', 'd', 'e');
+// }
+
+// c.log(al);
+
+
+// for(let i = 0; i < 40; i++) {
+//   al.pop();
+// }
+
+// c.log(al)
