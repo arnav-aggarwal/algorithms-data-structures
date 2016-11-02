@@ -1,4 +1,14 @@
-//ArrayList.js
+/**
+ * ArrayList.js
+ *
+ * Since Javscript arrays are array lists, we mimic the functionality
+ * of an array list. The array list size is always a power of 2.
+ * Resizes when at full capacity and when below 1/4 capacity.
+ * Native push/pop methods are rewritten. Length property is now the
+ * size of the array, and a new count property refers to the number
+ * of elements inside.
+ */
+
 
 class ArrayList extends Array {
   constructor(...items) {
