@@ -4,31 +4,35 @@
  * 
  */
 
-class Heap {
+class Heap extends Array {
   constructor(...values) {
-    this._storage = [];
+    super();
 
     //Maintaining a set of the values allows constant-time lookup
-    this._itemSet = {};
+    Object.defineProperty(this, '_itemSet', {
+      value: {},
+      writable: true,
+    });
+    
     values.forEach(val => this.insert(val));
   }
 
   insert(item) {
-    this._storage.push(item);
+    this.push(item);
     this._itemSet[item] = this._itemSet[item] + 1 || 1;
     this._reheapUp();
   }
 
   checkMax() {
     this._emptyCheck();
-    return this._storage[0];
+    return this[0];
   }
 
   removeMax() {
     this._emptyCheck();
 
-    const item = this._storage[0];
-    this._storage[0] = this._storage.pop();
+    const item = this[0];
+    this[0] = this.pop();
 
     this._reheapDown();
     --this._itemSet[item] || delete this._itemSet[item];
@@ -40,7 +44,7 @@ class Heap {
   }
 
   _emptyCheck() {
-    if(this._storage.length === 0) {
+    if(this.length === 0) {
       throw new Error('Attempting to access value in an empty heap');
     }
   }
@@ -58,17 +62,17 @@ class Heap {
   }
 
   _swap(index1, index2) {
-    const temp = this._storage[index1];
-    this._storage[index1] = this._storage[index2];
-    this._storage[index2] = temp;
+    const temp = this[index1];
+    this[index1] = this[index2];
+    this[index2] = temp;
   }
 
-  _reheapUp(currentIndex = this._storage.length - 1) {
+  _reheapUp(currentIndex = this.length - 1) {
     if(currentIndex === 0) return;
 
-    const currentValue = this._storage[currentIndex];
+    const currentValue = this[currentIndex];
     const parentIndex = this._getParentIndex(currentIndex);
-    const parentValue = this._storage[parentIndex];
+    const parentValue = this[parentIndex];
 
     if(parentValue < currentValue) {
       this._swap(currentIndex, parentIndex);
@@ -77,18 +81,18 @@ class Heap {
   }
 
   _reheapDown(currentIndex = 0) {
-    let currentValue = this._storage[currentIndex];
+    let currentValue = this[currentIndex];
 
     const leftChildIndex = this._getLeftChildIndex(currentIndex);
-    const leftChild = this._storage[leftChildIndex];
+    const leftChild = this[leftChildIndex];
     if(leftChild > currentValue) {
       this._swap(leftChildIndex, currentIndex);
       this._reheapDown(leftChildIndex);
-      currentValue = this._storage[currentIndex];
+      currentValue = this[currentIndex];
     }
 
     const rightChildIndex = this._getRightChildIndex(currentIndex);
-    const rightChild = this._storage[rightChildIndex];
+    const rightChild = this[rightChildIndex];
     if(rightChild > currentValue) {
       this._swap(rightChildIndex, currentIndex);
       this._reheapDown(rightChildIndex);
