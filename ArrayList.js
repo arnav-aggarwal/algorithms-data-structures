@@ -4,7 +4,10 @@ class ArrayList extends Array {
   constructor(...items) {
     super();
     this.length = 4;
-    this.count = 0;
+    Object.defineProperty(this, 'count', { 
+      value: 0,
+      writable: true,
+    });
     this.push(...items);
   }
   
