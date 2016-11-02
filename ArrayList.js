@@ -7,6 +7,13 @@
  * Native push/pop methods are rewritten. Length property is now the
  * size of the array, and a new count property refers to the number
  * of elements inside.
+ *
+ * Todo:
+ * Perhaps worth implementing differently - actually creating a new
+ * array and copying elements over, instead of resizing the same
+ * array, as one would have to do with actual static-sized arrays.
+ *
+ * Todo: Tests
  */
 
 
