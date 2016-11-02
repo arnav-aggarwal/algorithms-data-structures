@@ -16,7 +16,6 @@
  * Todo: Tests
  */
 
-
 class ArrayList extends Array {
   constructor(...items) {
     super();
