@@ -1,7 +1,9 @@
 /**
  * StringBuilder.js
  *
- * 
+ * Seems redundant. The only value is the toString method.
+ *
+ * TODO: Tests
  */
 
 class StringBuilder extends Array {
@@ -18,8 +20,3 @@ class StringBuilder extends Array {
     this.push(...items);
   }
 }
-
-// const sb = new StringBuilder('a', 'badfd');
-// sb.append('asdfadsa')
-// console.log(sb);
-// console.log(sb.toString());
