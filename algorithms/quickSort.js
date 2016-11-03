@@ -3,14 +3,23 @@
  */
 
 Array.prototype.quickSort = function(start = 0, end = this.length) {
-  const thisLength = end - start;
+  function swap(i, j) {
+    const temp = this[i];
+    this[i] = this[j];
+    this[j] = temp;
+  }
 
+  const thisLength = end - start;
   if(thisLength < 2) {
     return;
   }
 
-  const pivotIndex = start + Math.floor(thisLength / 2);
-  const pivot = this[pivotIndex];
+  const pivot = this[end - 1];
+
+  for(let index = start; index < end - 1; index++) {
+    
+  }
+
   // this.quickSort(start, midpoint);
   // this.quickSort(midpoint, end);
 }
