@@ -3,7 +3,7 @@
  */
 
 Array.prototype.quickSort = function(start = 0, end = this.length) {
-  function swap(i, j) {
+  const swap = (i, j) => {
     const temp = this[i];
     this[i] = this[j];
     this[j] = temp;
