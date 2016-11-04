@@ -24,11 +24,9 @@ Array.prototype.quickSort = function(start = 0, end = this.length) {
   let j = start;
 
   for(let i = start; i < lastIndex; i++) {
-    if(this[i] >= pivot) {
-      continue;
+    if(this[i] < pivot) {
+      swap(i, j++);
     }
-
-    swap(i, j++);
   }
 
   swap(j, lastIndex);
@@ -37,10 +35,10 @@ Array.prototype.quickSort = function(start = 0, end = this.length) {
   this.quickSort(j + 1, end);
 }
 
-// const s = [4, 3, 2];
-// s.quickSort();
-// console.log(s);
+const s = [4, 3, 2];
+s.quickSort();
+console.log(s);
 
-// let s2 = [8, 1, 4, 3, 2, 89, 32, 78, 88, 88, 45, 12, 14, 19, 17, 42]; //2^4 => 16
-// s2.quickSort();
-// console.log(s2);
+let s2 = [8, 1, 4, 3, 2, 89, 32, 78, 88, 88, 45, 12, 14, 19, 17, 42]; //2^4 => 16
+s2.quickSort();
+console.log(s2);
