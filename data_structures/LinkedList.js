@@ -9,8 +9,9 @@ class LinkedList {
   }
 
   addToHead(item) {
+    node = { value: item };
+
     if(!this.head) {
-      node = { value: item };
       this.head = node;
       this.tail = node;
       node.pre = node;
@@ -18,6 +19,10 @@ class LinkedList {
       return;
     }
 
-    
+    node.next = this.head;
+    node.pre = this.tail;
+    this.head.pre = node;
+    this.tail.next = node;
+    this.head = node;
   }
 }
