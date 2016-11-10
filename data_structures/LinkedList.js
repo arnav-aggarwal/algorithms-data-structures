@@ -46,7 +46,7 @@ class LinkedList {
   }
 
   removeFromHead() {
-    if(!head) {
+    if(!this.head) {
       throw new Error('Attempting to access an empty list');
     }
 
@@ -64,7 +64,7 @@ class LinkedList {
   }
 
   removeFromTail() {
-    if(!tail) {
+    if(!this.tail) {
       throw new Error('Attempting to access an empty list');
     }
 
@@ -81,6 +81,19 @@ class LinkedList {
     return value;
   }
 }
+
+const LL = new LinkedList();
+console.log(LL);
+LL.addToHead(1);
+console.log(LL);
+LL.addToHead(2);
+console.log(LL);
+LL.addToTail(3);
+console.log(LL);
+LL.removeFromTail();
+console.log(LL);
+LL.removeFromHead();
+console.log(LL);
 
 /**
  * circular, doubly-linked list
