@@ -1,3 +1,20 @@
+const LinkedList = require('./LinkedList.js');
+
+/**
+ * Using a LinkedList
+ */
+class QueueLL extends LinkedList {
+  constructor() {
+    super();
+    this.enqueue = this.addToTail;
+    this.dequeue = this.removeFromHead;
+  }
+}
+
+// const q = new QueueLL();
+// q.enqueue(4);
+// q.enqueue(6);
+// console.log(q);
 
 /**
  * Using 2 stacks. Insertion is O(1), removal is

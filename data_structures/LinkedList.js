@@ -82,6 +82,8 @@ class LinkedList {
   }
 }
 
+module.exports = LinkedList;
+
 const LL = new LinkedList();
 console.log(LL);
 LL.addToHead(1);
