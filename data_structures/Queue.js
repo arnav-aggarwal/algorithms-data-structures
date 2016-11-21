@@ -65,9 +65,8 @@ function ES5Queue() {
   this.length = __ => length;
 
   this.enqueue = function(item) {
-    inbox.push(item);
     length++;
-    return item;
+    return inbox.push(item);
   }
 
   this.dequeue = function() {

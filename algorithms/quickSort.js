@@ -33,6 +33,8 @@ Array.prototype.quickSort = function(start = 0, end = this.length) {
 
   this.quickSort(start, j);
   this.quickSort(j + 1, end);
+
+  return this;
 }
 
 const s = [4, 3, 2];
