@@ -16,14 +16,17 @@
  * Todo: Tests
  */
 
-class ArrayList extends Array {
+module.exports = class ArrayList extends Array {
   constructor(...items) {
     super();
+
     this.length = 4;
+
     Object.defineProperty(this, 'count', { 
       value: 0,
       writable: true,
     });
+
     this.push(...items);
   }
   
@@ -52,19 +55,3 @@ class ArrayList extends Array {
     return value;
   }
 }
-
-// const c = console;
-// const al = new ArrayList();
-
-// for(let i = 0; i < 10; i++) {
-//   al.push('a', 'b', 'c', 'd', 'e');
-// }
-
-// c.log(al);
-
-
-// for(let i = 0; i < 40; i++) {
-//   al.pop();
-// }
-
-// c.log(al)
