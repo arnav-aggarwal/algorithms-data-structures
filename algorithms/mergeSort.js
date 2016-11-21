@@ -1,5 +1,7 @@
 /**
  * mergeSort.js
+ *
+ * Sorts the array in-place and also returns it
  */
 
 Array.prototype.mergeSort = function(start = 0, end = this.length) {
@@ -36,13 +38,6 @@ Array.prototype.mergeSort = function(start = 0, end = this.length) {
   }
 
   sorted.forEach((num, index) => this[start + index] = num);
-  void 0;
+  
+  return this;
 }
-
-const s = [4, 3, 2];
-s.mergeSort();
-console.log(s);
-
-const s2 = [8, 1, 4, 3, 2, 89, 32, 78, 88, 88, 45, 12, 14, 19, 17];
-s2.mergeSort();
-console.log(s2);
