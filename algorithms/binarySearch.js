@@ -13,7 +13,6 @@
  * @return {Number}       The index of the item, or -1
  */
 Array.prototype.binarySearch = function(item, start = 0, end = this.length - 1) {
-  console.log(start, end)
   if(item < this[start] || item > this[end]) {
     return -1;
   }
@@ -35,7 +34,3 @@ Array.prototype.binarySearch = function(item, start = 0, end = this.length - 1) 
 
   return this.binarySearch(item, middleIndex + 1, end);
 }
-
-const arr = ['a', 'b', 'c', 'd', 'd', 'e', 'f', 'g'];
-
-console.log(arr.binarySearch('f'));
