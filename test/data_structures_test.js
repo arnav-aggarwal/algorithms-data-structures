@@ -33,3 +33,106 @@ describe('Array List', function() {
     expect(AL.length).to.equal(64);
   });
 });
+
+describe('LinkedList', function() {
+  const LinkedList = require('../data_structures/LinkedList.js');
+
+  it('should correctly add to head', function() {
+    const LL = new LinkedList();
+    LL.addToHead('a');
+    expect(LL.head.value).to.equal('a');
+    expect(LL.tail.value).to.equal('a');
+
+    LL.addToHead('b');
+    expect(LL.head.value).to.equal('b');
+    expect(LL.tail.value).to.equal('a');
+  });
+
+  it('should correctly add to tail', function() {
+    const LL = new LinkedList();
+    LL.addToTail('a');
+    expect(LL.head.value).to.equal('a');
+    expect(LL.tail.value).to.equal('a');
+
+    LL.addToTail('b');
+    expect(LL.head.value).to.equal('a');
+    expect(LL.tail.value).to.equal('b');
+  });
+
+  it('should correctly remove from head', function() {
+    const LL = new LinkedList();
+    LL.addToHead('a');
+    LL.addToHead('b');
+
+    expect(LL.removeFromHead()).to.equal('b');
+    expect(LL.head.value).to.equal('a');
+    expect(LL.tail.value).to.equal('a');
+
+    expect(LL.removeFromHead()).to.equal('a');
+    expect(LL.head).to.equal(null);
+    expect(LL.tail).to.equal(null);
+  });
+
+  it('should correctly remove from tail', function() {
+    const LL = new LinkedList();
+    LL.addToHead('a');
+    LL.addToHead('b');
+
+    expect(LL.removeFromTail()).to.equal('a');
+    expect(LL.head.value).to.equal('b');
+    expect(LL.tail.value).to.equal('b');
+
+    expect(LL.removeFromTail()).to.equal('b');
+    expect(LL.head).to.equal(null);
+    expect(LL.tail).to.equal(null);
+  });
+
+  it('should add and and remove all types, repeatedly', function() {
+    const string = '';
+    const number = 4;
+    const array = [];
+    const object = {};
+    const fn = () => {};
+
+    const LL = new LinkedList();
+    LL.addToHead(string);
+    LL.addToHead(number);
+    LL.addToHead(array);
+    LL.addToHead(object);
+    LL.addToHead(fn);
+
+    expect(LL.count).to.equal(5);
+    expect(LL.head.value).to.equal(fn);
+    expect(LL.tail.value).to.equal(string);
+
+    expect(LL.removeFromTail()).to.equal(string);
+    expect(LL.removeFromTail()).to.equal(number);
+    expect(LL.removeFromTail()).to.equal(array);
+    expect(LL.removeFromTail()).to.equal(object);
+    expect(LL.removeFromTail()).to.equal(fn);
+
+    expect(LL.count).to.equal(0);
+    expect(LL.head).to.equal(null);
+    expect(LL.tail).to.equal(null);
+
+    LL.addToTail(string);
+    LL.addToTail(number);
+    LL.addToTail(array);
+    LL.addToTail(object);
+    LL.addToTail(fn);
+
+    expect(LL.count).to.equal(5);
+    expect(LL.tail.value).to.equal(fn);
+    expect(LL.head.value).to.equal(string);
+
+    expect(LL.removeFromHead()).to.equal(string);
+    expect(LL.removeFromHead()).to.equal(number);
+    expect(LL.removeFromHead()).to.equal(array);
+    expect(LL.removeFromHead()).to.equal(object);
+    expect(LL.removeFromHead()).to.equal(fn);
+    
+    expect(LL.count).to.equal(0);
+    expect(LL.head).to.equal(null);
+    expect(LL.tail).to.equal(null);
+  });
+});

@@ -3,10 +3,13 @@
  */
 
 class LinkedList {
-  constructor() {
+  constructor(...items) {
     this.head = null;
     this.tail = null;
     this._count = 0;
+
+    //Use a function to maintain proper 'this' binding
+    items.forEach(item => this.addToTail(item));
   }
 
   get count() {
@@ -17,6 +20,7 @@ class LinkedList {
     const node = { value: item };
     node.pre = null;
     node.next = this.head;
+    this._count++;
 
     if(!this.head) {
       this.head = node;
@@ -26,13 +30,13 @@ class LinkedList {
 
     this.head.pre = node;
     this.head = node;
-    this._count++;
   }
 
   addToTail(item) {
     const node = { value: item };
     node.pre = this.tail;
     node.next = null;
+    this._count++;
 
     if(!this.tail) {
       this.head = node;
@@ -42,7 +46,6 @@ class LinkedList {
 
     this.tail.next = node;
     this.tail = node;
-    this._count++;
   }
 
   removeFromHead() {
@@ -52,9 +55,9 @@ class LinkedList {
 
     const value = this.head.value;
     this.head = this.head.next;
+    this._count--;
 
-    //check this line
-    if(this._count-- === 1) {
+    if(this._count === 0) {
       this.tail = null;
       return value;
     }
@@ -70,9 +73,9 @@ class LinkedList {
 
     const value = this.tail.value;
     this.tail = this.tail.pre;
+    this._count--;
 
-    //check this line
-    if(this._count-- === 1) {
+    if(this._count === 0) {
       this.head = null;
       return value;
     }
@@ -83,23 +86,6 @@ class LinkedList {
 }
 
 module.exports = LinkedList;
-
-const LL = new LinkedList();
-console.log(LL);
-LL.addToHead(1);
-console.log(LL);
-LL.addToHead(2);
-console.log(LL);
-LL.addToTail(3);
-console.log(LL);
-LL.removeFromTail();
-console.log(LL);
-LL.removeFromHead();
-console.log(LL);
-
-/**
- * circular, doubly-linked list
- */
 
 class LinkedListCircular {
   constructor() {
