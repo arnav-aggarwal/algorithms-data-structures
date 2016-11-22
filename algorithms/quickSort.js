@@ -36,11 +36,3 @@ Array.prototype.quickSort = function(start = 0, end = this.length) {
 
   return this;
 }
-
-const s = [4, 3, 2];
-s.quickSort();
-console.log(s);
-
-let s2 = [8, 1, 4, 3, 2, 89, 32, 78, 88, 88, 45, 12, 14, 19, 17, 42]; //2^4 => 16
-s2.quickSort();
-console.log(s2);
