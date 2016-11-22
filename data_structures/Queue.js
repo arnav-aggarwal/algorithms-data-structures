@@ -11,16 +11,11 @@ class QueueLL extends LinkedList {
   }
 }
 
-// const q = new QueueLL();
-// q.enqueue(4);
-// q.enqueue(6);
-// console.log(q);
-
 /**
  * Using 2 stacks. Insertion is O(1), removal is
  * amorized O(1). ES6 class
  */
-class Queue {
+class QueueStack {
   constructor() {
     this._inbox = [];
     this._outbox = [];
@@ -56,8 +51,7 @@ class Queue {
 /**
  * Using 2 stacks, ES5 way, using actual data hiding
  */
-
-function ES5Queue() {
+function QueueES5() {
   const inbox = [];
   const outbox = [];
   let length = 0;
@@ -85,16 +79,8 @@ function ES5Queue() {
   }
 }
 
-// const Q = new ES5Queue();
-
-// console.log(Q);
-
-// Q.enqueue('a');
-// Q.enqueue('b');
-
-// console.log(Q.enqueue('c'));
-
-
-// Q.enqueue('d');
-// console.log(Q.dequeue());
-// console.log(Q.dequeue());
+module.exports = {
+  QueueLL,
+  QueueStack,
+  QueueES5
+};

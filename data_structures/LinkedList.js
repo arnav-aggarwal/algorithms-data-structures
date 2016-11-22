@@ -6,21 +6,21 @@ class LinkedList {
   constructor(...items) {
     this.head = null;
     this.tail = null;
-    this._count = 0;
+    this._length = 0;
 
     //Use a function to maintain proper 'this' binding
     items.forEach(item => this.addToTail(item));
   }
 
-  get count() {
-    return this._count;
+  get length() {
+    return this._length;
   }
 
   addToHead(item) {
     const node = { value: item };
     node.pre = null;
     node.next = this.head;
-    this._count++;
+    this._length++;
 
     if(!this.head) {
       this.head = node;
@@ -36,7 +36,7 @@ class LinkedList {
     const node = { value: item };
     node.pre = this.tail;
     node.next = null;
-    this._count++;
+    this._length++;
 
     if(!this.tail) {
       this.head = node;
@@ -55,9 +55,9 @@ class LinkedList {
 
     const value = this.head.value;
     this.head = this.head.next;
-    this._count--;
+    this._length--;
 
-    if(this._count === 0) {
+    if(this._length === 0) {
       this.tail = null;
       return value;
     }
@@ -73,9 +73,9 @@ class LinkedList {
 
     const value = this.tail.value;
     this.tail = this.tail.pre;
-    this._count--;
+    this._length--;
 
-    if(this._count === 0) {
+    if(this._length === 0) {
       this.head = null;
       return value;
     }
@@ -91,11 +91,11 @@ class LinkedListCircular {
   constructor() {
     this.head = null;
     this.tail = null;
-    this._count = 0;
+    this._length = 0;
   }
 
   get count() {
-    return this._count;
+    return this._length;
   }
 
   addToHead(item) {
@@ -114,6 +114,6 @@ class LinkedListCircular {
     this.head.pre = node;
     this.tail.next = node;
     this.head = node;
-    this._count--;
+    this._length--;
   }
 }
