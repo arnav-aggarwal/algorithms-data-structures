@@ -38,9 +38,22 @@ describe('Array List', function() {
 /////////////////////////////LinkedList///////////////////////////////
 describe('Linked List', function() {
   const LinkedList = require('../data_structures/LinkedList.js');
+  beforeEach(() => LL = new LinkedList());
 
-  it('should correctly add to head', function() {
-    const LL = new LinkedList();
+  it('should have a head and tail', function() {
+    expect(LL).to.have.property("head");
+    expect(LL).to.have.property("tail");
+  });
+
+  it('should have methods named "addToHead", "addToTail", "removeFromHead", "removeFromTail", and "contains"', function() {
+    expect(LL.addToHead).to.be.a("function");
+    expect(LL.addToTail).to.be.a("function");
+    expect(LL.removeFromHead).to.be.a("function");
+    expect(LL.removeFromTail).to.be.a("function");
+    expect(LL.contains).to.be.a("function");
+  });
+
+  it('should designate a new head when new nodes are added to head', function() {
     LL.addToHead('a');
     expect(LL.head.value).to.equal('a');
     expect(LL.tail.value).to.equal('a');
@@ -50,33 +63,22 @@ describe('Linked List', function() {
     expect(LL.tail.value).to.equal('a');
   });
 
-  it('should correctly add to tail', function() {
-    const LL = new LinkedList();
-    LL.addToTail('a');
-    expect(LL.head.value).to.equal('a');
-    expect(LL.tail.value).to.equal('a');
-
-    LL.addToTail('b');
-    expect(LL.head.value).to.equal('a');
-    expect(LL.tail.value).to.equal('b');
+  it('should designate a new tail when new nodes are added to tail', function(){
+    LL.addToTail(4);
+    expect(LL.tail.value).to.equal(4);
+    LL.addToTail(5);
+    expect(LL.tail.value).to.equal(5);
   });
 
-  it('should correctly remove from head', function() {
-    const LL = new LinkedList();
-    LL.addToHead('a');
-    LL.addToHead('b');
-
-    expect(LL.removeFromHead()).to.equal('b');
-    expect(LL.head.value).to.equal('a');
-    expect(LL.tail.value).to.equal('a');
-
-    expect(LL.removeFromHead()).to.equal('a');
-    expect(LL.head).to.equal(null);
-    expect(LL.tail).to.equal(null);
+  it('should remove the head from the list when removeFromHead is called', function(){
+    LL.addToTail(4);
+    LL.addToTail(5);
+    expect(LL.head.value).to.equal(4);
+    LL.removeFromHead();
+    expect(LL.head.value).to.equal(5);
   });
 
   it('should correctly remove from tail', function() {
-    const LL = new LinkedList();
     LL.addToHead('a');
     LL.addToHead('b');
 
@@ -89,6 +91,42 @@ describe('Linked List', function() {
     expect(LL.tail).to.equal(null);
   });
 
+  it("should return the value of the former head when removeFromHead is called", function(){
+    LL.addToTail(4);
+    expect(LL.removeFromHead()).to.equal(4);
+  });
+
+  it("should return the value of the former tail when removeFromTail is called", function() {
+    LL.addToTail(4);
+    LL.addToTail(5);
+    LL.addToTail(6);
+    LL.addToTail(7);
+    expect(LL.removeFromTail()).to.equal(7);
+  });
+
+  it("should contain a value that was added", function(){
+    LL.addToTail(4);
+    LL.addToTail(5);
+    expect(LL.contains(4)).to.equal(true);
+    expect(LL.contains(5)).to.equal(true);
+    expect(LL.contains(6)).to.equal(false);
+  });
+
+  it('should not contain a value that was removed', function(){
+    LL.addToTail(4);
+    LL.addToTail(5);
+    LL.removeFromHead();
+    expect(LL.contains(4)).to.equal(false);
+  });
+
+  it ('should remove nodes from the middle of the list', function() {
+    LL.addToTail(4);
+    LL.addToTail(5);
+    LL.addToTail(6);
+    LL.addToTail(7);
+    expect(LL.removeNode(5)).to.equal(5);
+  });
+
   it('should add and and remove all types, repeatedly', function() {
     const string = '';
     const number = 4;
@@ -96,7 +134,6 @@ describe('Linked List', function() {
     const object = {};
     const fn = () => {};
 
-    const LL = new LinkedList();
     LL.addToHead(string);
     LL.addToHead(number);
     LL.addToHead(array);

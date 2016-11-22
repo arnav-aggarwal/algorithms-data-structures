@@ -16,7 +16,7 @@ Array.prototype.quickSort = function(start = 0, end = this.length) {
   }
 
   if(end - start < 2) {
-    return;
+    return this;
   }
 
   const lastIndex = end - 1;

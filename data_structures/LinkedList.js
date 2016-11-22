@@ -83,6 +83,44 @@ class LinkedList {
     this.tail.next = null;
     return value;
   }
+
+  removeNode(item) {
+    return this._find(item, true);
+  }
+
+  contains(item) {
+    return this._find(item);
+  }
+
+  //Use this method to both look for and remove a certain value.
+  //If removal is requested, remove, otherwise return T/F
+  _find(item, remove) {
+    let current = this.head;
+    while(current) {
+      if(current.value === item) {
+        if(remove) {
+          if(current === this.head) {
+            return this.removeFromHead();
+          }
+
+          if(current === this.tail) {
+            return this.removeFromTail();
+          }
+
+          const value = current.value;
+          current.pre.next = current.next;
+          current.next.pre = current.pre;
+          return value;
+        }
+
+        return true;
+      }
+
+      current = current.next;
+    }
+
+    return false;
+  }
 }
 
 module.exports = LinkedList;
