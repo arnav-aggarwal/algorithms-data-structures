@@ -36,7 +36,7 @@ describe('Array List', function() {
 });
 
 /////////////////////////////LinkedList///////////////////////////////
-describe('LinkedList', function() {
+describe('Linked List', function() {
   const LinkedList = require('../data_structures/LinkedList.js');
 
   it('should correctly add to head', function() {
@@ -142,13 +142,7 @@ describe('LinkedList', function() {
 /////////////////////////////Queue//////////////////////////////////
 const { QueueLL, QueueStack, QueueES5 } = require('../data_structures/Queue.js');
 
-const queueTests = [
-
-];
-
-describe('Queue - LinkedList Implementation', function() {
-  const Q =  new QueueLL();
-
+function runQueueTests(Q) {
   it('should enqueue and dequeue numbers', function() {
     Q.enqueue(1);
     Q.enqueue(2);
@@ -178,4 +172,19 @@ describe('Queue - LinkedList Implementation', function() {
     expect(Q.dequeue()).to.equal(fn);
     expect(Q.length).to.equal(0);
   });
+}
+
+describe('Queue - LinkedList Implementation', function() {
+  const Q =  new QueueLL();
+  runQueueTests(Q);
+});
+
+describe('Queue - Two Stacks Implementation', function() {
+  const Q =  new QueueStack();
+  runQueueTests(Q);
+});
+
+describe('Queue - ES5, Two Stacks Implementation', function() {
+  const Q =  new QueueES5();
+  runQueueTests(Q);
 });
